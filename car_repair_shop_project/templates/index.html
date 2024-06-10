@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Car repair shop{% endblock %}
+{% block content %}
+<div class=main_content>
+    <h1>Welcome to the car repair shop</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    <span style="color: red;">{{ message }}</span>
+                </div><br>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+</div>
+
+{% endblock %}

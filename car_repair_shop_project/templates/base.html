@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Car repair shop{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+{% block header %}
+<div class="navbar">
+    <a class="{% if active == 'home' %}active{% endif %}" href="{{ url_for('home') }}">Home</a>
+    <a class=nav_links href="{{ url_for('about') }}">About us</a>
+        <a class=nav_links href="{{ url_for('services') }}">Services</a>
+        <a class=nav_links href="{{ url_for('appointment') }}">Book appointment</a>
+    {% if current_user.is_authenticated %}
+    <div class = float_right>
+        <a>Hello,&nbsp; {{ current_user.name }}!</a>
+        <a href="{{ url_for('profile') }}">Your profile</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+    {% else %}
+    <div class = float_right>
+        <a href="{{ url_for('register') }}">Register</a>
+        <a href="{{ url_for('login') }}">Login</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+{% block display_title %} <h1 class=display_title>Car repair shop</h1>{% endblock %}
+<hr>
+
+{% block content %}
+
+{% endblock %}
+
+</body>
+</html>

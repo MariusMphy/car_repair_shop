@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+    {% block title %}Edit name - Car repair shop{% endblock %}
+    {% block content %}
+    <div class=main_content>
+        <h1>Edit name</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        <span style="color: red;">{{ message }}</span>
+                    </div><br>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <ul>
+            <li>{{ user.name }},&nbsp; {{ user.email }}&nbsp; {{ user.phone }}
+                &nbsp; <a href="{{ url_for('profile') }}">Back to profile</a><br><br>
+
+            <br>
+
+        </ul>
+
+        <form method="POST" action="{{ url_for('edit_name', user_id=user.id) }}">
+            {{ form.hidden_tag() }}
+            <div>
+            {{ form.name.label }} {{ form.name }}<br><br>
+            {{ form.submit }}
+            </div>
+        </form>
+    </div>
+    {% endblock %}

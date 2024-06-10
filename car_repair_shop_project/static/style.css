@@ -1,0 +1,59 @@
+body{
+background-color: #83c985;
+}
+.navbar {
+    overflow: hidden;
+    background-color: DarkSlateBlue; /* Change the background color as desired */
+  }
+
+   /* Links inside the navbar */
+  .navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+  }
+
+  /* Change color of navbar links on hover */
+  .navbar a:hover {
+    background-color: #ddd; /* Change the background color on hover */
+    color: black;
+  }
+
+  /* Add an "active" class to the current navbar link */
+  .navbar a.active {
+    background-color: #4CAF50; /* Change the background color of the active link */
+    color: white;
+  }
+
+  /* Float the "Hello, username" text to the right */
+  .navbar span {
+    float: right;
+    padding-right: 20px;
+  }
+
+    .navbar .float_right {
+    float: right;
+    padding-right: 0px;
+  }
+    .navbar .float_center {
+    float: center;
+  }
+
+    .display_title {
+    text-align: center;
+    color: DarkSlateBlue;
+    font-size: 45px;
+
+  }
+    .main_content{
+        padding-left: 30px;
+
+    }
+
+    .main_content ul{
+        list-style-type: none;
+
+    }

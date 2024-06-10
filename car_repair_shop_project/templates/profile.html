@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+    {% block title %}Profile - Car repair shop{% endblock %}
+{% block content %}
+<div class=main_content>
+<h2 style="display: inline;">Your profile info</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    <span style="color: red;">{{ message }}</span>
+                </div><br>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+<a style="padding-left: 20px;" href="{{ url_for('edit_profile', user_id=user.id) }}">Edit profile</a>
+<br><br>
+    <ul>
+        <li>Name:&nbsp; {{ user.name }} <a href="{{ url_for('edit_name', user_id=user.id) }}">Edit name</a>
+        <li>Email:&nbsp; {{ user.email }}
+        <li>Phone:&nbsp; {{ user.phone }} <a href="{{ url_for('edit_phone', user_id=user.id) }}">Edit phone</a>
+    </ul>
+<br>
+<h2 style="display: inline;">Your cars</h2>
+<a style="padding-left: 20px;" href="{{ url_for('add_car') }}">Add car</a>
+
+
+<br><br><hr>
+    {% if cars %}
+        {% for car in cars %}
+    <ul>
+        <li>{{ car.make }},&nbsp; {{ car.model }}&nbsp; {{ car.year }}&nbsp; {{ car.plate }}&nbsp;&nbsp;
+            <a href="{{ url_for('edit_issue', car_id=car.id) }}">Edit issue </a>&nbsp; <a href="{{ url_for('delete_car', car_id=car.id) }}">Delete car</a><br>
+        Issue: {{ car.problem }}
+        <br> <br>
+            <h4 style="display: inline;">Active services:</h4>
+            {% if car.repairs %}
+                {% set total_price = 0 %}
+
+                {% for service in car.repairs %}
+                    <li>Service: {{ service.service }}, Price: {{ service.price }}, Description: {{ service.desc }}</li>
+                    {% set total_price = total_price + service.price %}
+                {% endfor %}
+                <li><strong>Total Price for Services: {{ car.total_price }}</strong></li>
+            {% else %}
+                <p>No services found for this car.</p>
+            {% endif %}
+    </ul><hr>
+        {% endfor %}
+    {% else %}
+    <p>No cars found.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

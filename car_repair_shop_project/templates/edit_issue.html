@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Edit issue - Car repair shop{% endblock %}
+{% block content %}
+<div class=main_content>
+    <h1>Edit issue</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    <span style="color: red;">{{ message }}</span>
+                </div><br>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <ul>
+        <li>{{ car.make }},&nbsp; {{ car.model }}&nbsp; {{ car.year }}&nbsp; {{ car.plate }}&nbsp;&nbsp;
+            &nbsp; <a href="{{ url_for('car') }}">Delete car</a><br><br>
+            Current issue:
+        {{ car.problem }}</li>
+        <br>
+
+    </ul>
+
+    <form method="POST" action="{{ url_for('edit_issue', car_id=car.id) }}">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.problem.label }} {{ form.problem() }}
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+</div>
+{% endblock %}
