@@ -14,7 +14,6 @@
         {% endif %}
     {% endwith %}
 
-<a style="padding-left: 20px;" href="{{ url_for('edit_profile', user_id=user.id) }}">Edit profile</a>
 <br><br>
     <ul>
         <li>Name:&nbsp; {{ user.name }} <a href="{{ url_for('edit_name', user_id=user.id) }}">Edit name</a>
